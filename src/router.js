@@ -19,7 +19,7 @@ export default new Router({
       component: Album
     }
   ],
-  scrollBehavior (to, from, savedPosition) {
+  scrollBehavior (to, from) {
     return { x: 0, y: 0 }
   }
 })

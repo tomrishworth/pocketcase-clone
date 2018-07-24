@@ -156,10 +156,6 @@ export default {
   top: 0;
   left: auto;
   right: auto;
-  z-index: 50;
-  &.finished-animation {
-    z-index: 0;
-  }
   .circle {
     background: #333;
     border-radius: 50%;
@@ -206,11 +202,11 @@ export default {
     font-size: 16px;
     margin-top: 0;
     margin-bottom: 5px;
-    font-weight: 600;
+    font-weight: 700;
   }
   h2 {
     font-size: 16px;
-    font-weight: 400;
+    font-weight: 700;
     color: #888;
     margin-top: 0;
     margin-bottom: 0;

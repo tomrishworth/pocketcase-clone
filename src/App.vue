@@ -9,7 +9,7 @@
 
 @import "node_modules/normalize.css/normalize";
 
-@import url('https://fonts.googleapis.com/css?family=Montserrat:400,600');
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,700');
 
 html {
   box-sizing: border-box;
@@ -28,6 +28,9 @@ body {
   font-weight: 400;
   background-color: #121212;
   color: #fff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 .container {
