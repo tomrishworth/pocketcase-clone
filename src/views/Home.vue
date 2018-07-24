@@ -29,7 +29,6 @@ export default {
   data() {
     return {
       loading: false
-      // albums: [];
     };
   },
   directives: {
@@ -77,7 +76,7 @@ export default {
       let scaleFactor = this.$store.state.albumPosition.full.width / this.$store.state.albumPosition.grid.width;
       let distanceTop = this.$store.state.albumPosition.full.top - this.$store.state.albumPosition.grid.top;
       // let distanceLeft = this.$store.state.albumPosition.full.left - this.$store.state.albumPosition.grid.left;
-      let distanceLeft = 40 - this.$store.state.albumPosition.grid.left;
+      let distanceLeft = 40 - this.$store.state.albumPosition.grid.left; // TODO Don't use hardcoded position here
       anime({
         targets: lastSelectedDomItem,
         duration: 300,

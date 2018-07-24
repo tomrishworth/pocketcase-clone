@@ -17,10 +17,6 @@
           <div v-for="artist in album.artists">
             <h2 class="text-truncate">{{ artist.name }}</h2>
           </div>
-          <!-- <div class="album-meta">
-            <div>{{ album.tracks.total }} Songs</div>
-            <div>{{ albumYear }}</div>
-          </div> -->
         </div>
       </div>
     </div>
@@ -46,7 +42,6 @@ export default {
   data() {
     return {
       album: {},
-      currrentPosition: {},
     };
   },
   props: ["id"],
@@ -62,8 +57,8 @@ export default {
       });
     },
     animateItem() {
-      let lastPosition = this.$refs.albumImage.getBoundingClientRect();
-      let scaleFactor = this.$store.state.albumPosition.grid.width / lastPosition.width;
+      let albumEndPosition = this.$refs.albumImage.getBoundingClientRect();
+      let scaleFactor = this.$store.state.albumPosition.grid.width / albumEndPosition.width;
       anime({
         targets: ".album-image",
         duration: 400,
@@ -76,12 +71,6 @@ export default {
         // Get the albums new position after animation has completed
         complete: this.updateAlbumPosition
       });
-    },
-  },
-  computed: {
-    albumYear() {
-      let fullDate = new Date(this.album.release_date)
-      return fullDate.getFullYear();
     },
   },
   watch: {
@@ -150,9 +139,7 @@ export default {
 .album-header {
   height: 400px;
   width: 375px;
-  // background: #333;
   position: fixed;
-  // overflow: hidden;
   top: 0;
   left: auto;
   right: auto;
@@ -212,17 +199,6 @@ export default {
     margin-bottom: 0;
   }
 }
-
-// .album-meta {
-//   display: flex;
-//   justify-content: center;
-//   color: #888;
-//   text-transform: uppercase;
-//   font-size: 12px;
-//   div {
-//     margin: 5px;
-//   }
-// }
 
 .tracks {
   z-index: 30;
