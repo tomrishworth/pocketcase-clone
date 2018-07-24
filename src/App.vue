@@ -1,29 +1,84 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
     <router-view/>
   </div>
 </template>
 
+
 <style lang="scss">
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+
+@import "node_modules/normalize.css/normalize";
+
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,600');
+
+html {
+  box-sizing: border-box;
+  -ms-overflow-style: scrollbar;
+  overflow-y: scroll;
 }
-#nav {
-  padding: 30px;
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-    &.router-link-exact-active {
-      color: #42b983;
-    }
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  background-color: #121212;
+  color: #fff;
+}
+
+.container {
+  max-width: 375px;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+}
+
+.text-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 100%;
+    transform: translateX(0);
   }
 }
+
+.fadeInUp {
+  animation-name: fadeInUp;
+  animation-timing-function: ease-out;
+  animation-duration: 800ms;
+  animation-fill-mode: both;
+}
+
+@keyframes fadeInUpSm {
+  0% {
+    opacity: 0;
+    transform: translateY(3px);
+  }
+  100% {
+    opacity: 100%;
+    transform: translateX(0);
+  }
+}
+
+.fadeInUpSm {
+  animation-name: fadeInUpSm;
+  animation-timing-function: ease-out;
+  animation-duration: 300ms;
+  animation-fill-mode: both;
+}
+
 </style>
+
+
