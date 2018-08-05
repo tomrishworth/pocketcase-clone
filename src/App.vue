@@ -26,7 +26,7 @@ html {
 body {
   font-family: 'Montserrat', sans-serif;
   font-weight: 400;
-  background-color: #121212;
+  background-color: #2b1d1d;
   color: #fff;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -38,6 +38,7 @@ body {
   margin-left: auto;
   margin-right: auto;
   position: relative;
+  background-color: #121212;
 }
 
 .text-truncate {

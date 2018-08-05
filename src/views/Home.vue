@@ -1,17 +1,19 @@
 <template>
   <div class="container">
     <h1>My Albums</h1>
-    <div class="spinner" v-if="loading">
+    <div class="spinner"
+         v-if="loading">
       <div class="double-bounce1"></div>
       <div class="double-bounce2"></div>
     </div>
-    <div v-images-loaded:on.done="imageDone" class="albums">
-      <div :key="album.id"
+    <div v-images-loaded:on.done="imageDone"
+         class="albums">
+      <div @click="goToAlbum(album.id)"
+           :key="album.id"
            class="album"
            :ref="album.id"
            v-for="(album, index) in albums"
-           v-show="!loading"
-           @click="goToAlbum(album.id)">
+           v-show="!loading">
         <div class="album-image">
           <img :src="album.images[1].url" />
         </div>
@@ -22,7 +24,7 @@
 
 <script>
 import anime from "animejs";
-import imagesLoaded from 'vue-images-loaded'
+import imagesLoaded from "vue-images-loaded";
 
 export default {
   name: "home",
@@ -32,12 +34,12 @@ export default {
     };
   },
   directives: {
-      imagesLoaded
+    imagesLoaded
   },
   computed: {
     albums() {
       return this.$store.getters.albumList;
-    },
+    }
   },
   methods: {
     getAlbums() {
@@ -47,7 +49,7 @@ export default {
       // Find DOM element of selected album
       let domItem = this.$refs[value][0];
       // Gets its position relative to the window
-      let albumPosition = domItem.getBoundingClientRect()
+      let albumPosition = domItem.getBoundingClientRect();
       // Get its position relative to its parent
       let albumOffsetLeft = domItem.offsetLeft;
       // Update store with this info
@@ -68,13 +70,17 @@ export default {
     if (!Object.keys(this.$store.state.albums).length) {
       this.loading = true;
       this.getAlbums();
-    } 
+    }
   },
   mounted() {
     if (this.$store.state.lastSelected) {
       let lastSelectedDomItem = this.$refs[this.$store.state.lastSelected][0];
-      let scaleFactor = this.$store.state.albumPosition.full.width / this.$store.state.albumPosition.grid.width;
-      let distanceTop = this.$store.state.albumPosition.full.top - this.$store.state.albumPosition.grid.top;
+      let scaleFactor =
+        this.$store.state.albumPosition.full.width /
+        this.$store.state.albumPosition.grid.width;
+      let distanceTop =
+        this.$store.state.albumPosition.full.top -
+        this.$store.state.albumPosition.grid.top;
       // let distanceLeft = this.$store.state.albumPosition.full.left - this.$store.state.albumPosition.grid.left;
       let distanceLeft = 40 - this.$store.state.albumPosition.grid.left; // TODO Don't use hardcoded position here
       anime({
@@ -92,9 +98,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 h1 {
+  margin-top: 0;
   padding-left: 25px;
+  padding-top: 15px;
 }
 
 .albums {
@@ -132,7 +139,8 @@ h1 {
   margin: 100px auto;
 }
 
-.double-bounce1, .double-bounce2 {
+.double-bounce1,
+.double-bounce2 {
   width: 100%;
   height: 100%;
   border-radius: 50%;
@@ -141,29 +149,35 @@ h1 {
   position: absolute;
   top: 0;
   left: 0;
-  
-  -webkit-animation: sk-bounce 2.0s infinite ease-in-out;
-  animation: sk-bounce 2.0s infinite ease-in-out;
+
+  -webkit-animation: sk-bounce 2s infinite ease-in-out;
+  animation: sk-bounce 2s infinite ease-in-out;
 }
 
 .double-bounce2 {
-  -webkit-animation-delay: -1.0s;
-  animation-delay: -1.0s;
+  -webkit-animation-delay: -1s;
+  animation-delay: -1s;
 }
 
 @-webkit-keyframes sk-bounce {
-  0%, 100% { -webkit-transform: scale(0.0) }
-  50% { -webkit-transform: scale(1.0) }
-}
-
-@keyframes sk-bounce {
-  0%, 100% { 
-    transform: scale(0.0);
-    -webkit-transform: scale(0.0);
-  } 50% { 
-    transform: scale(1.0);
-    -webkit-transform: scale(1.0);
+  0%,
+  100% {
+    -webkit-transform: scale(0);
+  }
+  50% {
+    -webkit-transform: scale(1);
   }
 }
 
+@keyframes sk-bounce {
+  0%,
+  100% {
+    transform: scale(0);
+    -webkit-transform: scale(0);
+  }
+  50% {
+    transform: scale(1);
+    -webkit-transform: scale(1);
+  }
+}
 </style>
